@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Abstract\" />
-    <Folder Include="Concrete\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -14,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj" />
     <ProjectReference Include="..\Entity\Entities.csproj" />
   </ItemGroup>
 
