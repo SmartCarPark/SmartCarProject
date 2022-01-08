@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DataAccess.Abstract
 {
-    public interface IReservatiınDal : IEntityRepository<Reservation>
+    public interface ISpotDal : IEntityRepository<Spot>
     {
     }
 }
