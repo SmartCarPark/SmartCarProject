@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Business.Abstract
 {
-    public interface IUserservice : IGenericService<User>
+    public interface IUserService : IGenericService<User>
     {
     }
 }

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DataAccess.Concrete
 {
-    internal class EfUserDal : EfEntityRepositoryBase<User, Context>, IUserDal
+    public class EfUserDal : EfEntityRepositoryBase<User, Context>, IUserDal
     {
     }
 }
