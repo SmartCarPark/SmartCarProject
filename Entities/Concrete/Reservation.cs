@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Entities.Concrete
 {
-    internal class Resrvation :IEntity
+    public class Reservation :IEntity
     {
         public int reservationId { get; set; }
         public int spotId { get; set; }
