@@ -93,27 +93,11 @@
     </style>
 </head>
 
-<body data-vide-bg="~/img/car1.mp4">
+<body  data-vide-bg="~/img/car1">
     <div class="layer"></div>
-    <form>
-        <div class="form-header">
-
-            <h1>List of Car Parks</h1>
-        </div>
-        <div class="link-container">
-
-            <ol>
-                <li><a href="carpark1.html">Car Park A</a></li>
-                <br>
-                <li><a href="carpark2.html">Car Park B</a></li>
-            </ol>
-
-        </div>
-    </form>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-            referrerpolicy="no-referrer"></script>
+    @RenderBody()
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script>
     <script src="~/js/jquery.vide.js"></script>
 </body>
 
 </html>
-@RenderBody()

@@ -1,0 +1,22 @@
+﻿@using Entities.Concrete
+@model List<Park>
+@{
+    ViewData["Title"] = "ListofCarParks";
+}
+
+<form>
+    <div class="form-header">
+
+        <h1>List of Car Parks</h1>
+    </div>
+    <div class="link-container">
+
+        <ol>
+            @foreach (var item in Model)
+            {
+                <li><a href="/Home/ListOfSpots/@item.ParkId">@item.ParkName</a></li>
+                <br />
+            }
+        </ol>
+    </div>
+</form>

@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Core.Entities.Concrete;
 using DataAccess.Abstract;
+using Entities.Dto;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,7 +19,7 @@ namespace Business.Concrete
 
         public User GetByID(int id)
         {
-            return _userDal.
+            return _userDal.Get(x => x.ID == id);
         }
 
         public List<User> GetList()
@@ -39,6 +40,12 @@ namespace Business.Concrete
         public void TUpdate(User t)
         {
             _userDal.Update(t);
+        }
+
+        public User UserExist(LoginDto login)
+        {
+            var user = _userDal.Get(x => x.Email == login.UserName && x.Password == login.Password);
+            return user;
         }
     }
 }

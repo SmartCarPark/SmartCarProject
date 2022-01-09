@@ -8,5 +8,7 @@ namespace Business.Abstract
 {
     public interface ISpotService  : IGenericService<Spot>
     {
+        List<Spot> GetListByParkID(int parkID);
+        void UpdateFulById(int id);
     }
 }
