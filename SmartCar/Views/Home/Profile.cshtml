@@ -1,0 +1,37 @@
+﻿@model Core.Entities.Concrete.User
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<form>
+    <div class="form-header">
+        <h1>Profile</h1>
+    </div>
+    <div class="input-container">
+        <label>Name Surname</label>
+        <br>
+        <p>@Model.FirstName @Model.LastName</p>
+        <br>
+        <label>E-mail</label>
+        <br>
+        <p> @Model.Email</p>
+        <br>
+        <label>Your Rezervations</label>
+        <br />
+        <p id="change">B2 is reserved for you</p>
+        <input id="but" type="button" onclick="swal('You can park to B1');" value="My place is full" />
+        <br>
+    </div>
+    <div class="link-container">
+        <a href="/Home/ListofCarParks">Car Park List</a><br>
+        <a href="/Home/Index">Log Out</a>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        $("#but").click(function () {
+            $("#change").text("B1 is reserved for you")
+        });
+    </script>
+</form>

@@ -94,5 +94,17 @@ namespace SmartCar.Controllers
             spotManager.UpdateFulById(reservation.spotId);
             return RedirectToAction("ListofCarParks");
         }
+
+        public IActionResult Profile()
+        {
+            var values = userManager.GetByID(1);
+            return View(values);
+        }
+
+        public IActionResult Reservations()
+        {
+            var values = reservationManager.GetListByUserID(1);
+            return View(values);
+        }
     }
 }

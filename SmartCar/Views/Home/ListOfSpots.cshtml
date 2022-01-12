@@ -15,7 +15,11 @@
             @if (item.ful == false && item.broken == false)
             {
                 <input type="hidden" name="spotId" value="@item.spotId" />
-                <input type="submit" value="@item.SpotName" onclick="return confirm('Do you confirm parking?')" style="background-color: green;">
+                <input type="submit" value="@item.SpotName" onclick="return confirm('Do you confirm parking? Reservation will be end in 15 minutes.')" style="background-color: green;">
+            }
+            else if (item.broken == true)
+            {
+                <input type="button" value="@item.SpotName Temporary not working!" style="background-color: red; color: white;" disabled>
             }
             else
             {

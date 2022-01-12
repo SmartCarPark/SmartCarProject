@@ -26,9 +26,14 @@ namespace Business.Concrete
             return _reservationDal.GetAll();
         }
 
+        public List<Reservation> GetListByUserID(int id)
+        {
+            return _reservationDal.GetAll(x => x.userId == id);
+        }
+
         public void TAdd(Reservation t)
         {
-            _reservationDal.Add(t); 
+            _reservationDal.Add(t);
         }
 
         public void TDelete(Reservation t)
