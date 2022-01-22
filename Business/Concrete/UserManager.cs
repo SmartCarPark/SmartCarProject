@@ -27,6 +27,11 @@ namespace Business.Concrete
             return _userDal.GetAll();
         }
 
+        public List<ProfileDto> GetUser(int id)
+        {
+            return _userDal.GetUser(id);
+        }
+
         public void TAdd(User t)
         {
             _userDal.Add(t);

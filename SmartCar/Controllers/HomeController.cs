@@ -5,6 +5,8 @@ using DataAccess.Concrete;
 using Entities.Concrete;
 using Entities.Dto;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SmartCar.Models;
@@ -12,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace SmartCar.Controllers
@@ -25,29 +28,40 @@ namespace SmartCar.Controllers
 
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Index(LoginDto login)
+        [AllowAnonymous]
+        public async Task<IActionResult> Index(LoginDto login)
         {
             var user = userManager.UserExist(login);
             if(user!=null)
             {
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name,user.ID.ToString())
+                };
+                var userIdentity = new ClaimsIdentity(claims, "a");
+                ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
+                await HttpContext.SignInAsync(principal);
                 return RedirectToAction("ListofCarParks");
             }
             return View();
         }
         
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult SignUp()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult SignUp(SignUpDto signUpDto)
         {
             RegisterValidator registerValidator = new RegisterValidator();
@@ -88,7 +102,7 @@ namespace SmartCar.Controllers
         [HttpPost]
         public IActionResult ListOfSpots(Reservation reservation)
         {
-            reservation.userId = 1;
+            reservation.userId = Convert.ToInt32(User.Identity.Name);
             reservation.date = DateTime.Now;
             reservationManager.TAdd(reservation);
             spotManager.UpdateFulById(reservation.spotId);
@@ -97,14 +111,10 @@ namespace SmartCar.Controllers
 
         public IActionResult Profile()
         {
-            var values = userManager.GetByID(1);
-            return View(values);
-        }
-
-        public IActionResult Reservations()
-        {
-            var values = reservationManager.GetListByUserID(1);
-            return View(values);
+            ProfileD profile = new ProfileD();
+            profile.profile = userManager.GetUser(Convert.ToInt32(User.Identity.Name));
+            profile.user = userManager.GetByID(Convert.ToInt32(User.Identity.Name));
+            return View(profile);
         }
     }
 }
